@@ -34,7 +34,10 @@ class ResumeTable extends Migration
             $table->string('e_client');
             $table->string('e_timeline');
             $table->text('e_description');
-            $table->string('status');
+            $table->string('status')->default('Deactive');
+            $table->string('status_color')->default('badge-secondary');;
+            $table->string('btn_status')->default('Active');;
+            $table->string('btn_status_color')->default('btn-danger');;
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 <template>
     
-    <div class="container"> 
+    <div class=""> 
         <header class="d-print-none">
             <div class="container text-center text-lg-left">
                 <div class="py-3 clearfix">
@@ -9,7 +9,10 @@
                     <nav role="navigation">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <router-link to="/" class="nav-item nav-link">Products List</router-link>
+                            <router-link to="/" class="nav-item nav-link">Preview</router-link>
+                        </li>
+                         <li class="nav-item">
+                            <router-link to="/resume" class="nav-item nav-link">Products List</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/create" class="nav-item nav-link">Create Product</router-link>

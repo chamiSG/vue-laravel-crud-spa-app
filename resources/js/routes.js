@@ -1,4 +1,4 @@
-import AllProduct from './components/AllProduct.vue';
+import AllResume from './components/AllResume.vue';
 import CreateProfile from './components/CreateProfile.vue';
 import EditProduct from './components/EditProduct.vue';
 import Profile from './components/Profile.vue';
@@ -20,8 +20,8 @@ export const routes = [
         component: EditProduct
     },
     {
-        name: 'profile',
-        path: '/profile',
-        component: Profile
+        name: 'resume',
+        path: '/resume',
+        component: AllResume
     }
 ];

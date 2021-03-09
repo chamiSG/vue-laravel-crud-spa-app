@@ -29,6 +29,9 @@ class Resume extends Model
         'e_client', 
         'e_timeline', 
         'e_description',  
-        'status',  
+        'status',      
+        'status_color',  
+        'btn_status',     
+        'btn_status_color',
     ]; 
 }

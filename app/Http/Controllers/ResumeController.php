@@ -7,7 +7,7 @@ class ResumeController extends Controller
 {
     public function index()
     {
-        $resumes = Resume::all()->toArray();
+        $resumes = Resume::orderBy('id', 'DESC')->get()->all();
         return array_reverse($resumes);      
     }
 
@@ -33,7 +33,7 @@ class ResumeController extends Controller
             'e_client'        => $request->input('eClient'),
             'e_timeline'      => $request->input('eTimeline'),
             'e_description'   => $request->input('eDescription'),
-            'status'          => "inactive",
+            
         ]);
         $resume->save();
 
@@ -60,5 +60,31 @@ class ResumeController extends Controller
         $resume->delete();
 
         return response()->json('Resume deleted!');
+    }
+
+    public function active($id){
+        
+        $prew_id = Resume::where('status', 'Active')->value('id');
+        $reset = Resume::where('status', 'Active')->update([
+                        'status'           => 'Deactive',
+                        'status_color'     => 'badge-secondary',
+                        'btn_status'       => 'Active',
+                        'btn_status_color' => 'btn-danger',
+                        ]);
+
+        $resume = Resume::find($id);
+        $resume->status = 'Active';
+        $resume->status_color = 'badge-danger';
+        $resume->btn_status = 'Deactive';
+        $resume->btn_status_color = 'btn-secondary';
+        $resume->save();
+
+        return response()->json([
+            'status'           => 'Active',
+            'status_color'     => 'badge-danger',
+            'btn_status'       => 'Deactive',
+            'btn_status_color' => 'btn-secondary',
+            'prew_id'          => $prew_id
+            ]);
     }
 }

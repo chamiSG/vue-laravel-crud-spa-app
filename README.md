@@ -10,5 +10,5 @@
 ## Screenshots
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-<img src="https://github.com/https://github.com/chamiSG/vue-laravel-crud-spa-app/screenshot-1.png"/>
-<img src="https://github.com/https://github.com/chamiSG/vue-laravel-crud-spa-app/screenshot-2.png"/>
+<img src="https://github.com/chamiSG/vue-laravel-crud-spa-app/screenshot-1.png"/>
+<img src="https://github.com/chamiSG/vue-laravel-crud-spa-app/screenshot-2.png"/>

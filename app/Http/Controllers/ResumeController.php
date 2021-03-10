@@ -13,6 +13,10 @@ class ResumeController extends Controller
 
     public function store(Request $request)
     {
+        $skills = json_encode($request->input('skills'));
+        $works  = json_encode($request->input('works'));
+        $edus   = json_encode($request->input('edus'));
+
         $resume = new Resume([
             'firstname'       => $request->input('firstname'),
             'lastname'        => $request->input('lastname'),
@@ -23,21 +27,13 @@ class ResumeController extends Controller
             'dev_type'        => $request->input('devType'),
             'dev_description' => $request->input('devDescription'),
             'avatar'          => "default",
-            'skill_name'      => $request->input('skillName'),
-            'skill_year'      => $request->input('skillYear'),
-            'p_title'         => $request->input('pTitle'),
-            'p_client'        => $request->input('pClient'),
-            'p_timeline'      => $request->input('pTimeline'),
-            'p_description'   => $request->input('pDescription'),
-            'e_title'         => $request->input('eTitle'),
-            'e_client'        => $request->input('eClient'),
-            'e_timeline'      => $request->input('eTimeline'),
-            'e_description'   => $request->input('eDescription'),
-            
+            'skill'           => $skills,
+            'work'            => $works,
+            'edu'             => $edus,
         ]);
         $resume->save();
 
-        return response()->json('Resume created!');
+        return response()->json('Created!');
     }
 
     public function show($id)
@@ -62,15 +58,23 @@ class ResumeController extends Controller
         return response()->json('Resume deleted!');
     }
 
+    public function getResume(){
+
+        $resume = Resume::where('status', 'Active')->get();
+        return response()->json($resume);      
+    }
+
     public function active($id){
-        
+
         $prew_id = Resume::where('status', 'Active')->value('id');
-        $reset = Resume::where('status', 'Active')->update([
-                        'status'           => 'Deactive',
-                        'status_color'     => 'badge-secondary',
-                        'btn_status'       => 'Active',
-                        'btn_status_color' => 'btn-danger',
-                        ]);
+        if($prew_id != null){
+            $reset = Resume::where('status', 'Active')->update([
+                'status'           => 'Deactive',
+                'status_color'     => 'badge-secondary',
+                'btn_status'       => 'Active',
+                'btn_status_color' => 'btn-danger',
+                ]);
+        }
 
         $resume = Resume::find($id);
         $resume->status = 'Active';

@@ -13,4 +13,5 @@ use App\Http\Controllers\ResumeController;
 Route::middleware('api')->group(function () {
     Route::resource('resume', ResumeController::class);
     Route::post('active/{id}',   [ResumeController::class, 'active'])->name('active');
+    Route::get('/my-resume',   [ResumeController::class, 'getResume'])->name('getResume');
 });

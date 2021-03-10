@@ -96,23 +96,18 @@
             <div class="skills-section px-3 px-lg-4">
                 <h2 class="h3 mb-3">Professional Skills</h2>
                 <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-2">
-                        <select class="form-control" id="skill_name" name="skill_name" required v-model="resume.skillName">
-                            <option>Frontend Developer</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                    <div class="col-md-2 offset-md-10 mb-2 text-right">
+                        <button class="btn btn-primary mt-2 " type="button" @click="clickAddSkill">Add Skill</button>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="mb-2">
-                        <input class="form-control" type="text" id="skill_year" name="skill_year" placeholder="10" required v-model="resume.skillYear">
-                    </div>
-                </div>
-                </div>
+                <skill
+                  v-for="(skill, index) in topSkills"
+                  :key="index"
+                  :skill="skill"
+                  @remove="removeSkill(index)"
+                  @nameChanged="skillNameChanged($event, index)"
+                  @yearChanged="skillYearChanged($event, index)"
+                />
             </div>
             <hr class="d-print-none"/>
             <div class="work-experience-section px-3 px-lg-4">
@@ -120,36 +115,18 @@
                 <div class="">
                     <div class="custom-card-primary timeline-card-primary card shadow-sm">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent project title.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <input class="form-control" type="text" id="p_title" name="p_title" required v-model="resume.pTitle">
-                                        </div>
-                                    </div>
-                                     <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent project Client.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <input class="form-control" type="text" id="p_client" name="p_client" required v-model="resume.pClient">
-                                        </div>
-                                    </div>
-                                     <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent project timeline.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <input class="form-control" type="text" id="p_timeline" name="p_timeline" required v-model="resume.pTimeline">
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent project description.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <textarea class="form-control" style="resize: none;" id="p_description" name="p_description" rows="4"  placeholder="Text Here..." required v-model="resume.pDescription"></textarea>
-                                        </div>
-                                    </div>
-                                     <div class="row jsutify-content-end">
-                                        <button class="btn btn-primary mt-2 " type="submit">Add Work</button>
-                                    </div>
-                                </div>
+                            <work-experience
+                              v-for="(work, index) in works"
+                              :key="index"
+                              :work="work"
+                              @removeWork="removeWork(index)"
+                              @workTitleChanged="workTitleChanged($event, index)"
+                              @workClientChanged="workClientChanged($event, index)"
+                              @workTimeChanged="workTimeChanged($event, index)"
+                              @workContentChanged="workContentChanged($event, index)"
+                            />
+                            <div class="row jsutify-content-end">
+                                <button class="btn btn-primary mt-2 " type="button" @click="clickAddWork">Add Work</button>
                             </div>
                         </div>
                     </div>
@@ -162,36 +139,18 @@
                 <div class="">
                     <div class="custom-card-success timeline-card-success card shadow-sm">
                         <div class="card-body">
+                            <education
+                              v-for="(edu, index) in edus"
+                              :key="index"
+                              :edu="edu"
+                              @removeEdu="removeEdu(index)"
+                              @eduTitleChanged="eduTitleChanged($event, index)"
+                              @eduClientChanged="eduClientChanged($event, index)"
+                              @eduTimeChanged="eduTimeChanged($event, index)"
+                              @eduContentChanged="eduContentChanged($event, index)"
+                            />
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent education title.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <input class="form-control" type="text" id="e_title" name="e_title" required v-model="resume.eTitle">
-                                        </div>
-                                    </div>
-                                     <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent education Client.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <input class="form-control" type="text" id="e_client" name="e_client" required v-model="resume.eClient">
-                                        </div>
-                                    </div>
-                                     <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent education timeline.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <input class="form-control" type="text" id="e_timeline" name="e_timeline" required v-model="resume.eTimeline">
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="pb-1">Please input your recent education description.</div>
-                                        <div class="col-sm-12 mb-2">
-                                            <textarea class="form-control" style="resize: none;" id="e_description" name="e_description" rows="4"  placeholder="Text Here..." required v-model="resume.eDescription"></textarea>
-                                        </div>
-                                    </div>
-                                     <div class="row jsutify-content-end">
-                                        <button class="btn btn-success mt-2 " type="button">Add Education</button>
-                                    </div>
-                                </div>
+                                <button class="btn btn-success mt-2 " type="button" @click="clickAddEdu">Add Education</button>
                             </div>
                         </div>
                     </div>
@@ -207,7 +166,6 @@
                     </div>
                 </div>
             </div>
-
           </form>
         </div>
       </div>
@@ -216,25 +174,126 @@
 </template>
  
 <script>
-
-    export default {
-        
-        data() {
-            return {
-                resume: {},
-            }
-        },
-        methods: {
-            
-            createResume() {
-                this.axios
-                    .post('http://localhost:8000/api/resume', this.resume)
-                    .then(response => (
-                        this.$router.push({ name: 'home' })
-                    ))
-                    .catch(err => console.log(err))
-                    .finally(() => this.loading = false)
-            }
-        }
+import Skill from '../components/skill-component'
+import WorkExperience from '../components/work-experience-component'
+import Education from '../components/education-component'
+export default {
+  components: {
+    Skill,
+    WorkExperience,
+    Education
+  },
+  data() {
+    return {
+      resume: {},
+      
+      topSkills: [{
+        name: 'HTML',
+        year: 0
+      }],
+      works: [{
+        title: '',
+        client: '',
+        time: '',
+        content: ''
+      }],
+      edus: [{
+        title: '',
+        client: '',
+        time: '',
+        content: ''
+      }]
     }
+  },
+  mounted() {
+    var vm = this;
+    vm.resume.skills = this.topSkills;
+    vm.resume.works  = this.works;
+    vm.resume.edus   = this.edus;
+  },
+  methods: {
+
+    // Init Skill
+    clickAddSkill() {
+      this.topSkills.push({
+        name: 'HTML',
+        year: 0
+      })
+    },
+    removeSkill(index) {
+      this.topSkills.splice(index, 1)
+    },
+    skillNameChanged(v, index) {
+      this.topSkills[index].name = v
+    },
+    skillYearChanged(v, index) {
+      this.topSkills[index].year = v
+    },
+
+    // Init Work Experience 
+    clickAddWork() {
+      this.works.push({
+        title: '',
+        client: '',
+        time: '',
+        content: ''
+      })
+    },
+
+    removeWork(index) {
+      this.works.splice(index, 1)
+    },
+    workTitleChanged(v, index) {
+      this.works[index].title = v
+    },
+    workClientChanged(v, index) {
+      this.works[index].client = v
+    },
+    workTimeChanged(v, index) {
+      this.works[index].time = v
+    },
+    workContentChanged(v, index) {
+      this.works[index].content = v
+    },
+
+    // Init Educations
+    clickAddEdu() {
+      this.edus.push({
+        title: '',
+        client: '',
+        time: '',
+        content: ''
+      })
+    },
+
+    removeEdu(index) {
+      this.edus.splice(index, 1)
+    },
+    eduTitleChanged(v, index) {
+      this.edus[index].title = v
+    },
+    eduClientChanged(v, index) {
+      this.edus[index].client = v
+    },
+    eduTimeChanged(v, index) {
+      this.edus[index].time = v
+    },
+    eduContentChanged(v, index) {
+      this.edus[index].content = v
+    },
+    
+    createResume() {
+      // console.log( this.topSkills)
+      this.axios
+          .post('http://localhost:8000/api/resume', this.resume)
+          .then(response => (
+              console,log(response.data)
+
+              // this.$router.push({ name: 'home' })
+          ))
+          .catch(err => console.log(err))
+          .finally(() => this.loading = false)
+    }
+  }
+}
 </script>

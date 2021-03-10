@@ -1,18 +1,18 @@
-import AllResume from './components/AllResume.vue';
-import CreateProfile from './components/CreateProfile.vue';
-import EditProduct from './components/EditProduct.vue';
-import Profile from './components/Profile.vue';
+import AllResume from './views/AllResume.vue';
+import CreateResume from './views/CreateResume.vue';
+import EditProduct from './views/EditProduct.vue';
+import Resume from './views/Resume.vue';
  
 export const routes = [
     {
         name: 'home',
         path: '/',
-        component: Profile
+        component: Resume
     },
     {
         name: 'create',
         path: '/create',
-        component: CreateProfile
+        component: CreateResume
     },
     {
         name: 'edit',

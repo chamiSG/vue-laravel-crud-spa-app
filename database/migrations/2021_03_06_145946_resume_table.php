@@ -24,20 +24,13 @@ class ResumeTable extends Migration
             $table->string('dev_type');
             $table->text('dev_description');
             $table->string('avatar');
-            $table->string('skill_name');
-            $table->string('skill_year');
-            $table->string('p_title');
-            $table->string('p_client');
-            $table->string('p_timeline');            
-            $table->text('p_description');
-            $table->string('e_title');
-            $table->string('e_client');
-            $table->string('e_timeline');
-            $table->text('e_description');
+            $table->text('skill');
+            $table->text('work');
+            $table->text('edu');
             $table->string('status')->default('Deactive');
-            $table->string('status_color')->default('badge-secondary');;
-            $table->string('btn_status')->default('Active');;
-            $table->string('btn_status_color')->default('btn-danger');;
+            $table->string('status_color')->default('badge-secondary');
+            $table->string('btn_status')->default('Active');
+            $table->string('btn_status_color')->default('btn-danger');
             $table->timestamps();
         });
     }

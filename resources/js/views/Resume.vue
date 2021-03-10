@@ -8,9 +8,9 @@
                 <div class="avatar hover-effect bg-white shadow-sm p-1"><img src="images/avatar.jpg" width="200" height="200"/></div>
               </div>
               <div class="col-lg-8 col-md-7 text-center text-md-start">
-                <h2 class="h1 mt-2" data-aos="fade-left" data-aos-delay="0">Joyce Harrison</h2>
-                <p data-aos="fade-left" data-aos-delay="100">Graphic Designer & Web Developer</p>
-                <div class="d-print-none" data-aos="fade-left" data-aos-delay="200"><a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="right-resume.pdf" target="_blank">Download CV</a><a class="btn btn-success shadow-sm mt-1" href="#contact">Hire Me</a></div>
+                <h2 class="h1 mt-2">{{resume.firstname}} {{resume.lastname}}</h2>
+                <p>{{resume.dev_type}}</p>
+                <div class="d-print-none"><a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="right-resume.pdf" target="_blank">Download CV</a><a class="btn btn-success shadow-sm mt-1" href="#contact">Hire Me</a></div>
               </div>
             </div>
           </div>
@@ -18,7 +18,7 @@
             <div class="row">
               <div class="col-md-6">
                 <h2 class="h3 mb-3">About Me</h2>
-                <p>Hello! I’m Joyce Harrison. I am passionate about UI/UX design and Web Design. I am a skilled Front-end Developer and master of Graphic Design tools such as Photoshop and Sketch.</p>
+                <p>{{resume.dev_description}}</p>
               </div>
               <div class="col-md-5 offset-md-1">
                 <div class="row mt-2">
@@ -26,25 +26,25 @@
                     <div class="pb-1">Age</div>
                   </div>
                   <div class="col-sm-8">
-                    <div class="pb-1 text-secondary">28</div>
+                    <div class="pb-1 text-secondary">{{resume.age}}</div>
                   </div>
                   <div class="col-sm-4">
                     <div class="pb-1">Email</div>
                   </div>
                   <div class="col-sm-8">
-                    <div class="pb-1 text-secondary">Joyce@company.com</div>
+                    <div class="pb-1 text-secondary">{{resume.email}}</div>
                   </div>
                   <div class="col-sm-4">
                     <div class="pb-1">Phone</div>
                   </div>
                   <div class="col-sm-8">
-                    <div class="pb-1 text-secondary">+0718-111-0011</div>
+                    <div class="pb-1 text-secondary">{{resume.phone}}</div>
                   </div>
                   <div class="col-sm-4">
                     <div class="pb-1">Address</div>
                   </div>
                   <div class="col-sm-8">
-                    <div class="pb-1 text-secondary">140, City Center, New York, U.S.A</div>
+                    <div class="pb-1 text-secondary">{{resume.address}}</div>
                   </div>
                 </div>
               </div>
@@ -96,23 +96,9 @@
             <div class="timeline">
               <div class="timeline-card timeline-card-primary card shadow-sm">
                 <div class="card-body">
-                  <div class="h5 mb-1">Frontend Developer <span class="text-muted h6">at Creative Agency</span></div>
-                  <div class="text-muted text-small mb-2">May, 2015 - Present</div>
-                  <div>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-primary card shadow-sm">
-                <div class="card-body">
-                  <div class="h5 mb-1">Graphic Designer <span class="text-muted h6">at Design Studio</span></div>
-                  <div class="text-muted text-small mb-2">June, 2013 - May, 2015</div>
-                  <div>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-primary card shadow-sm">
-                <div class="card-body">
-                  <div class="h5 mb-1">Junior Web Developer <span class="text-muted h6">at Indie Studio</span></div>
-                  <div class="text-muted text-small mb-2">Jan, 2011 - May, 2013</div>
-                  <div>User generated content in real-time will have multiple touchpoints for offshoring. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</div>
+                  <div class="h5 mb-1">{{resume.p_title}} <span class="text-muted h6">| {{resume.p_client}}</span></div>
+                  <div class="text-muted text-small mb-2">{{resume.p_timeline}}</div>
+                  <div>{{resume.p_description}}</div>
                 </div>
               </div>
             </div>
@@ -124,23 +110,9 @@
             <div class="timeline">
               <div class="timeline-card timeline-card-success card shadow-sm">
                 <div class="card-body">
-                  <div class="h5 mb-1">Masters in Information Technology <span class="text-muted h6">from International University</span></div>
-                  <div class="text-muted text-small mb-2">2011 - 2013</div>
-                  <div>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-success card shadow-sm">
-                <div class="card-body">
-                  <div class="h5 mb-1">Bachelor of Computer Science <span class="text-muted h6">from Regional College</span></div>
-                  <div class="text-muted text-small mb-2">2007 - 2011</div>
-                  <div>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-success card shadow-sm">
-                <div class="card-body">
-                  <div class="h5 mb-1">Science and Mathematics <span class="text-muted h6">from Mt. High Scool</span></div>
-                  <div class="text-muted text-small mb-2">1995 - 2007</div>
-                  <div>User generated content in real-time will have multiple touchpoints for offshoring. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</div>
+                  <div class="h5 mb-1">{{resume.e_title}}<span class="text-muted h6">| {{resume.e_title}}</span></div>
+                  <div class="text-muted text-small mb-2">{{resume.e_timeline}}</div>
+                  <div>{{resume.e_description}}</div>
                 </div>
               </div>
             </div>
@@ -170,14 +142,14 @@
               <div class="col">
                 <div class="mt-2">
                   <h3 class="h6">Address</h3>
-                  <div class="pb-2 text-secondary">140, City Center, New York, U.S.A</div>
+                  <div class="pb-2 text-secondary">{{resume.address}}</div>
                   <h3 class="h6">Phone</h3>
-                  <div class="pb-2 text-secondary">+0718-111-0011</div>
+                  <div class="pb-2 text-secondary">{{resume.phone}}</div>
                   <h3 class="h6">Email</h3>
-                  <div class="pb-2 text-secondary">Joyce@company.com</div>
+                  <div class="pb-2 text-secondary">{{resume.email}}</div>
                 </div>
               </div>
-              <div class="col d-none d-print-block">
+              <!-- <div class="col d-none d-print-block">
                 <div class="mt-2">
                   <div>
                     <div class="mb-2">
@@ -198,7 +170,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -207,6 +179,20 @@
 </template>
  
 <script>
-    export default {
-    }
+  export default {
+     data() {
+      return {
+        resume: {},
+      }
+    },
+    mounted() {
+      let self = this
+      this.axios
+        .get('http://localhost:8000/api/my-resume')
+        .then(({data}) => {
+          self.resume = data[0];
+          console.log(JSON.parse(self.resume.skill));
+        });
+    },
+  }
 </script>

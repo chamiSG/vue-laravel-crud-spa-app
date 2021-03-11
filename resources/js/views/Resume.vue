@@ -5,7 +5,9 @@
           <div class="cover-bg p-3 p-lg-4 text-white">
             <div class="row">
               <div class="col-lg-4 col-md-5">
-                <div class="avatar hover-effect bg-white shadow-sm p-1"><img src="images/avatar.jpg" width="200" height="200"/></div>
+                <div class="avatar hover-effect bg-white shadow-sm p-1">
+                  <img :src="avatarUrl" width="200" height="200"/>
+                </div>
               </div>
               <div class="col-lg-8 col-md-7 text-center text-md-start">
                 <h2 class="h1 mt-2">{{resume.firstname}} {{resume.lastname}}</h2>
@@ -54,38 +56,9 @@
           <div class="skills-section px-3 px-lg-4">
             <h2 class="h3 mb-3">Professional Skills</h2>
             <div class="row">
-              <div class="col-md-6">
-                <div class="mb-2"><span>HTML</span>
-                  <div class="progress my-1">
-                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="mb-2"><span>CSS</span>
-                  <div class="progress my-1">
-                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="mb-2"><span>JavaScript</span>
-                  <div class="progress my-1">
-                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-2"><span>Adobe Photoshop</span>
-                  <div class="progress my-1">
-                    <div class="progress-bar bg-success" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 80%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="mb-2"><span>Sketch</span>
-                  <div class="progress my-1">
-                    <div class="progress-bar bg-success" role="progressbar" data-aos="zoom-in-right" data-aos-delay="500" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="mb-2"><span>Adobe XD</span>
-                  <div class="progress my-1">
-                    <div class="progress-bar bg-success" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+              <div class="col-md-6" v-for="(skill, index) in skills" :key="index">
+                <div class="mb-2"><span>{{skill.name}}</span>
+                  <b-progress :value="skill.year" :max="max" :variant="setColor()" show-value animated></b-progress>
                 </div>
               </div>
             </div>
@@ -93,12 +66,12 @@
           <hr class="d-print-none"/>
           <div class="work-experience-section px-3 px-lg-4">
             <h2 class="h3 mb-4">Work Experience</h2>
-            <div class="timeline">
+            <div class="timeline" v-for="(work, index) in works" :key="index">
               <div class="timeline-card timeline-card-primary card shadow-sm">
                 <div class="card-body">
-                  <div class="h5 mb-1">{{resume.p_title}} <span class="text-muted h6">| {{resume.p_client}}</span></div>
-                  <div class="text-muted text-small mb-2">{{resume.p_timeline}}</div>
-                  <div>{{resume.p_description}}</div>
+                  <div class="h5 mb-1">{{work.title}} <span class="text-muted h6"> | {{work.client}}</span></div>
+                  <div class="text-muted text-small mb-2">{{work.timeline}}</div>
+                  <div>{{work.content}}</div>
                 </div>
               </div>
             </div>
@@ -107,12 +80,12 @@
           <div class="page-break"></div>
           <div class="education-section px-3 px-lg-4 pb-4">
             <h2 class="h3 mb-4">Education</h2>
-            <div class="timeline">
+            <div class="timeline" v-for="(edu, index) in edus" :key="index">
               <div class="timeline-card timeline-card-success card shadow-sm">
                 <div class="card-body">
-                  <div class="h5 mb-1">{{resume.e_title}}<span class="text-muted h6">| {{resume.e_title}}</span></div>
-                  <div class="text-muted text-small mb-2">{{resume.e_timeline}}</div>
-                  <div>{{resume.e_description}}</div>
+                  <div class="h5 mb-1">{{edu.title}}<span class="text-muted h6"> | {{edu.title}}</span></div>
+                  <div class="text-muted text-small mb-2">{{edu.timeline}}</div>
+                  <div>{{edu.content}}</div>
                 </div>
               </div>
             </div>
@@ -179,10 +152,22 @@
 </template>
  
 <script>
+
   export default {
      data() {
       return {
         resume: {},
+        skills: [],
+        works: [],
+        edus: [],
+        avatarUrl: '',
+        max: 10,
+        colors: [
+            'success',
+            'warning',
+            'danger',
+            'info'
+        ]
       }
     },
     mounted() {
@@ -191,8 +176,19 @@
         .get('http://localhost:8000/api/my-resume')
         .then(({data}) => {
           self.resume = data[0];
-          console.log(JSON.parse(self.resume.skill));
+          this.skills = JSON.parse(self.resume.skill);
+          this.works  = JSON.parse(self.resume.work);
+          this.edus   = JSON.parse(self.resume.edu);
+          this.avatarUrl = window.location.href + "storage/avatar/" + self.resume.avatar;
+          console.log(this.avatarUrl)
         });
     },
+    methods: {
+      setColor() {
+        let i = Math.floor(Math.random() * this.colors.length)
+        let color = this.colors[i]
+        return color
+      }
+    }
   }
 </script>

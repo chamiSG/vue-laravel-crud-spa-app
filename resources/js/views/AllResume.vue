@@ -12,8 +12,7 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Developer Type</th>
-                    <th scope="col">Skill Name</th>
-                    <th scope="col">Skill Year</th>
+                    <th scope="col">Skill</th>
                     <th scope="col">status</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -26,8 +25,12 @@
                     <td>{{ resume.lastname }}</td>
                     <td>{{ resume.email }}</td>
                     <td>{{ resume.dev_type }}</td>
-                    <td>{{ resume.skill_name }}</td>
-                    <td>{{ resume.skill_year }}</td>
+                    <td> 
+                      <p v-for="(skill, index) in JSON.parse(resume.skill)" :key="index">
+                        <span>{{skill.name}}</span>/
+                        <span>{{skill.year}}</span><br/>
+                      </p> 
+                    </td>
                     <td><span class="badge badge-pill" :class="resume.status_color">{{ resume.status }}</span></td>
                     <td>
                         <div class="btn-group" role="group">
@@ -48,9 +51,8 @@
     data() {
       return {
         resumes: [],
-        status_color: '', //badge-danger
+        status_color: '', 
         btn_status_color: 'btn-danger',
-
       }
     },
     created() {

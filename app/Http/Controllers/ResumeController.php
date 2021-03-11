@@ -13,10 +13,12 @@ class ResumeController extends Controller
 
     public function store(Request $request)
     {
-        $skills = json_encode($request->input('skills'));
-        $works  = json_encode($request->input('works'));
-        $edus   = json_encode($request->input('edus'));
-
+        $skills = json_decode($request->input('skills'), true);
+        $works  = json_decode($request->input('works'), true);
+        $edus   = json_decode($request->input('edus'), true);
+        if($request->file('avatar')){
+            $avatar_path = $request->file('avatar')->store('', 'user_avatars');
+        }
         $resume = new Resume([
             'firstname'       => $request->input('firstname'),
             'lastname'        => $request->input('lastname'),
@@ -26,10 +28,10 @@ class ResumeController extends Controller
             'address'         => $request->input('address'),
             'dev_type'        => $request->input('devType'),
             'dev_description' => $request->input('devDescription'),
-            'avatar'          => "default",
-            'skill'           => $skills,
-            'work'            => $works,
-            'edu'             => $edus,
+            'avatar'          => $avatar_path,
+            'skill'           => json_encode($skills),
+            'work'            => json_encode($works),
+            'edu'             => json_encode($edus),
         ]);
         $resume->save();
 

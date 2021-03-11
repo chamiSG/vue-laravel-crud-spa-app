@@ -86,7 +86,9 @@
                                 <div class="pb-1">Avatar</div>
                             </div>
                             <div class="col-sm-10 mb-2">
-                                <input class="form-control" type="file" id="avatar" name="avatar" placeholder="Please upload your photo" required >
+                                <input class="form-control avatar" type="file" name="avatar" placeholder="Please upload your photo" required 
+                                  @change="onFileChange"
+                                >
                             </div>
                         </div>
                     </div>
@@ -104,6 +106,7 @@
                   v-for="(skill, index) in topSkills"
                   :key="index"
                   :skill="skill"
+                  name="skills"
                   @remove="removeSkill(index)"
                   @nameChanged="skillNameChanged($event, index)"
                   @yearChanged="skillYearChanged($event, index)"
@@ -119,6 +122,7 @@
                               v-for="(work, index) in works"
                               :key="index"
                               :work="work"
+                              name="works"
                               @removeWork="removeWork(index)"
                               @workTitleChanged="workTitleChanged($event, index)"
                               @workClientChanged="workClientChanged($event, index)"
@@ -143,6 +147,7 @@
                               v-for="(edu, index) in edus"
                               :key="index"
                               :edu="edu"
+                              name="edus"
                               @removeEdu="removeEdu(index)"
                               @eduTitleChanged="eduTitleChanged($event, index)"
                               @eduClientChanged="eduClientChanged($event, index)"
@@ -185,7 +190,20 @@ export default {
   },
   data() {
     return {
-      resume: {},
+      resume: {
+        firstname: null,
+        lastname: null,
+        age: null,
+        email: null,
+        phone: null,
+        address: null,
+        devType: null,
+        devDescription: null,
+        avatar: null,
+        skills: null,
+        works: null,
+        edus: null,
+      },
       
       topSkills: [{
         name: 'HTML',
@@ -212,6 +230,10 @@ export default {
     vm.resume.edus   = this.edus;
   },
   methods: {
+
+    onFileChange(event){
+      this.resume.avatar = event.target.files[0];
+    },
 
     // Init Skill
     clickAddSkill() {
@@ -283,11 +305,29 @@ export default {
     },
     
     createResume() {
-      // console.log( this.topSkills)
+      let formData = new FormData();
+
+      formData.append("firstname", this.resume.firstname);
+      formData.append("lastname", this.resume.lastname);
+      formData.append("age", this.resume.age);
+      formData.append("email", this.resume.email);
+      formData.append("phone", this.resume.phone);
+      formData.append("address", this.resume.address);
+      formData.append("devType", this.resume.devType);
+      formData.append("devDescription", this.resume.devDescription);
+      formData.append("skills", JSON.stringify(this.topSkills));
+      formData.append("works", JSON.stringify(this.works));
+      formData.append("edus", JSON.stringify(this.edus));
+      formData.append("avatar", this.resume.avatar);
+
       this.axios
-          .post('http://localhost:8000/api/resume', this.resume)
+          .post('http://localhost:8000/api/resume', formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          })
           .then(response => (
-              console,log(response.data)
+              console.log(response.data)
 
               // this.$router.push({ name: 'home' })
           ))

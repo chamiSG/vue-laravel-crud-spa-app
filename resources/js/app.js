@@ -12,7 +12,7 @@ import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import { routes } from './routes';
-
+import { BProgress } from 'bootstrap-vue'
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -21,6 +21,7 @@ import { routes } from './routes';
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.component('b-progress', BProgress)
  
 const router = new VueRouter({
     mode: 'history',

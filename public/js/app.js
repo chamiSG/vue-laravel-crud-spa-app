@@ -2888,7 +2888,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.$notify({
         group: "top",
         title: "Success",
-        text: "response.data has been detacted",
+        text: 'Vue.js and Laravel 8',
         color: "text-green-500",
         bgColor: "bg-green-500"
       }, 6000);
@@ -48230,7 +48230,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-4" }, [
-      _c("div", { staticClass: "pb-1" }, [_vm._v("Age")])
+      _c("div", { staticClass: "pb-1 h6" }, [_vm._v("Age")])
     ])
   },
   function() {
@@ -48238,14 +48238,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-4" }, [
-      _c("div", { staticClass: "pb-1" }, [_vm._v("Email")])
+      _c("div", { staticClass: "pb-1 h6" }, [_vm._v("Email")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-4" }, [
+    return _c("div", { staticClass: "col-sm-4 h6" }, [
       _c("div", { staticClass: "pb-1" }, [_vm._v("Phone")])
     ])
   },
@@ -48254,7 +48254,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-4" }, [
-      _c("div", { staticClass: "pb-1" }, [_vm._v("Address")])
+      _c("div", { staticClass: "pb-1 h6" }, [_vm._v("Address")])
     ])
   },
   function() {

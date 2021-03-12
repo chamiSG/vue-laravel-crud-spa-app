@@ -25,25 +25,25 @@
               <div class="col-md-5 offset-md-1">
                 <div class="row mt-2">
                   <div class="col-sm-4">
-                    <div class="pb-1">Age</div>
+                    <div class="pb-1 h6">Age</div>
                   </div>
                   <div class="col-sm-8">
                     <div class="pb-1 text-secondary">{{resume.age}}</div>
                   </div>
                   <div class="col-sm-4">
-                    <div class="pb-1">Email</div>
+                    <div class="pb-1 h6">Email</div>
                   </div>
                   <div class="col-sm-8">
                     <div class="pb-1 text-secondary">{{resume.email}}</div>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 h6">
                     <div class="pb-1">Phone</div>
                   </div>
                   <div class="col-sm-8">
                     <div class="pb-1 text-secondary">{{resume.phone}}</div>
                   </div>
                   <div class="col-sm-4">
-                    <div class="pb-1">Address</div>
+                    <div class="pb-1 h6">Address</div>
                   </div>
                   <div class="col-sm-8">
                     <div class="pb-1 text-secondary">{{resume.address}}</div>
@@ -184,7 +184,7 @@
             {
               group: "top",
               title: "Success",
-              text: "response.data has been detacted",
+              text: 'Vue.js and Laravel 8',
               color: "text-green-500",
               bgColor: "bg-green-500"
             },

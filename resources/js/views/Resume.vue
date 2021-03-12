@@ -180,6 +180,16 @@
           this.works  = JSON.parse(self.resume.work);
           this.edus   = JSON.parse(self.resume.edu);
           this.avatarUrl = window.location.href + "storage/avatar/" + self.resume.avatar;
+          this.$notify(
+            {
+              group: "top",
+              title: "Success",
+              text: "response.data has been detacted",
+              color: "text-green-500",
+              bgColor: "bg-green-500"
+            },
+            6000
+          );
           console.log(this.avatarUrl)
         });
     },

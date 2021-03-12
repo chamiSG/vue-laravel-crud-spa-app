@@ -1,6 +1,6 @@
 <template>
     <div class="page-content mx-5">
-        <div class="table-responsive ">
+        <div class="table-responsive resume-list">
             <h2 class="text-center">Resume List</h2>
     
             <table class="table table-hover table-bordered table-striped ">
@@ -20,7 +20,11 @@
                 <tbody>
                 <tr v-for="resume in resumes" :key="resume.id">
                     <td>{{ resume.id }}</td>
-                    <td>{{ resume.avatar }}</td>
+                    <td>
+                      <div class="">
+                        <img :src="publicUrl + '/storage/avatar/' + resume.avatar" width="50" height="50"/>
+                      </div>
+                    </td>
                     <td>{{ resume.firstname }}</td>
                     <td>{{ resume.lastname }}</td>
                     <td>{{ resume.email }}</td>
@@ -53,6 +57,7 @@
         resumes: [],
         status_color: '', 
         btn_status_color: 'btn-danger',
+        publicUrl: ''
       }
     },
     created() {
@@ -60,6 +65,7 @@
         .get('http://localhost:8000/api/resume/')
         .then(response => {
           this.resumes = response.data;
+          this.publicUrl = window.location.origin;
         });
     },
     methods: {
@@ -69,6 +75,16 @@
           .then(response => {
             let i = this.resumes.map(data => data.id).indexOf(id);
             this.resumes.splice(i, 1)
+            this.$notify(
+              {
+                group: "top",
+                title: "Success",
+                text: response.data,
+                color: "text-green-500",
+                bgColor: "bg-green-500"
+              },
+              6000
+            );
           });
       },
       activeResume(id) { 
@@ -87,6 +103,16 @@
             this.resumes[i].status_color = response.data.status_color;
             this.resumes[i].btn_status = response.data.btn_status;
             this.resumes[i].btn_status_color = response.data.btn_status_color;
+            this.$notify(
+              {
+                group: "top",
+                title: "Success",
+                text: response.data.msg,
+                color: "text-green-500",
+                bgColor: "bg-green-500"
+              },
+              6000
+            );
         });
       }
     }

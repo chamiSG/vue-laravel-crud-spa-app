@@ -35,7 +35,7 @@ class ResumeController extends Controller
         ]);
         $resume->save();
 
-        return response()->json('Created!');
+        return response()->json('Successfully your resume created!');
     }
 
     public function show($id)
@@ -57,7 +57,7 @@ class ResumeController extends Controller
         $resume = Resume::find($id);
         $resume->delete();
 
-        return response()->json('Resume deleted!');
+        return response()->json('This resume deleted!');
     }
 
     public function getResume(){
@@ -90,7 +90,8 @@ class ResumeController extends Controller
             'status_color'     => 'badge-danger',
             'btn_status'       => 'Deactive',
             'btn_status_color' => 'btn-secondary',
-            'prew_id'          => $prew_id
+            'prew_id'          => $prew_id,
+            'msg'              => 'Current resume actived. You can use this resume.'
             ]);
     }
 }

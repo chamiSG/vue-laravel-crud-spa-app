@@ -12,7 +12,10 @@ import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import { routes } from './routes';
-import { BProgress } from 'bootstrap-vue'
+// import "tailwindcss/dist/tailwind.css";
+import { BProgress, BootstrapVueIcons } from 'bootstrap-vue'
+import Notifications from "vt-notifications";
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -20,9 +23,12 @@ import { BProgress } from 'bootstrap-vue'
  */
 
 Vue.use(VueRouter);
+Vue.use(Notifications);
 Vue.use(VueAxios, axios);
 Vue.component('b-progress', BProgress)
- 
+Vue.use(BootstrapVueIcons);
+
+
 const router = new VueRouter({
     mode: 'history',
     routes: routes

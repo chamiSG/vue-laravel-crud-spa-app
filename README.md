@@ -1,13 +1,38 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
+# Laravel Vue CRUD App (SPA)
+
+This application is Laravel and Vue CURD app.
+It is SPA(Single Page Application).
+Using Bootstrap 4, and Laravel 8, and Vue 2.x.
+
+## Project setup
+### Install php composer
+
+```
+composer install
+```
+
+### Install node module
+```
+npm install
+```
+
+### Compiles for development
+```
+npm run watch
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run server
+```
+php artisan serve
+```
 ## Screenshots
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-<a href="#"><img src="./public/screenshot-2.png" alt="resume" /></a>
+![GitHub Logo](/public/screenshot_1.png)
+![GitHub Logo](/public/screenshot_2.png)

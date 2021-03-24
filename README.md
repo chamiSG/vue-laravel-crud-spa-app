@@ -34,5 +34,5 @@ php artisan serve
 ```
 ## Screenshots
 
-![GitHub Logo](/public/screenshot_1.png)
-![GitHub Logo](/public/screenshot_2.png)
+![GitHub Logo](/blob/public/screenshot_1.png)
+![GitHub Logo](/blob/public/screenshot_2.png)
